@@ -12,13 +12,20 @@ import winston from 'winston';
 
 
 const app = express();
+app.use(express.json());
+
+// CORS middleware positioned before routes and other middleware
 app.use(cors({
   origin: "*",
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-  optionsSuccessStatus: 200
+  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "Accept"],
+  preflightContinue: false,
+  optionsSuccessStatus: 204
 }));
-app.use(express.json());
+
+// Handle preflight requests explicitly
+app.options('*', cors());
+
 
 
 // logger
