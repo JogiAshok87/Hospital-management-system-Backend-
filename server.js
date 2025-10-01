@@ -13,7 +13,14 @@ import winston from 'winston';
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:5173', // Vite dev server
+    'http://localhost:3000', // Alternative dev port
+    'https://your-frontend-domain.com' // Replace with your deployed frontend URL if needed
+  ],
+  credentials: true
+}));
 
 
 // logger
