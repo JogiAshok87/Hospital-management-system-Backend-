@@ -16,7 +16,7 @@ app.use(express.json());
 
 // CORS middleware positioned before routes and other middleware
 app.use(cors({
-  origin: "*",
+  origin: ['http://localhost:5173', 'http://localhost:3000', ],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "Accept"],
   preflightContinue: false,
